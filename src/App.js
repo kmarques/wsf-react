@@ -1,21 +1,35 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Button from "./Button";
+import List from "./components/List/List";
+import { useState } from "react";
 
 // React.createElement('div', {
 //   className:"App"
 // }, React.createElement('header', ....))
-
 function App() {
+  const buttons = [
+    { title: "bonjour", color: "red", img: logo },
+    { title: "bonsoir", color: "red", onClick: () => alert("bonsoir") },
+    { title: "bonsocdsqfqsir", color: "red" },
+    { title: "light", color: "red", onClick: () => setTheme("light") },
+    { title: "dark", color: "red" },
+  ];
+  const [theme, setTheme] = useState("light");
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Button title="bonjour" />
-        <Button title="bonsoir" />
-        <Button title="bonsocdsqfqsir" />
-        <Button title="bonfqsdfdssoir" />
-        <Button title="dsqdqsd" />
+        {theme}
+        {buttons.map((button) => (
+          <Button
+            title={button.title}
+            color={button.color}
+            img={button.img}
+            onClick={button.onClick}
+          />
+        ))}
+        <List />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

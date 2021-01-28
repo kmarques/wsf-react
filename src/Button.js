@@ -1,14 +1,22 @@
 import React from "react";
 
-function Button(props) {
+function Button({
+  img,
+  title = "red",
+  onClick,
+  color = "green",
+  titleColor = "white",
+}) {
   return (
-    <button
-      onClick={function () {
-        alert(props.title);
-      }}
-    >
-      {props.title}
-    </button>
+    <div>
+      <button
+        style={{ backgroundColor: color, color: titleColor }}
+        onClick={onClick}
+      >
+        {img && <img src={img} alt="button" />}
+        {title}
+      </button>
+    </div>
   );
 }
 
