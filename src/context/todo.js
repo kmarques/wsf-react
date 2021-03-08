@@ -8,14 +8,7 @@ const TodoProvider = function ({ children }) {
   useEffect(() => {
     fetch("http://localhost:3009/vehicules")
       .then((response) => response.json())
-      .then((data) =>
-        setItems(
-          data.map((vehicule) => ({
-            id: vehicule.id,
-            name: `${vehicule.marque} - ${vehicule.model}`,
-          }))
-        )
-      );
+      .then((data) => setItems(data));
   }, []);
 
   const addItem = (itemName) => {
@@ -29,15 +22,7 @@ const TodoProvider = function ({ children }) {
       }),
     })
       .then((response) => response.json())
-      .then((vehicule) =>
-        setItems([
-          ...items,
-          {
-            id: vehicule.id,
-            name: `${vehicule.marque} - ${vehicule.model}`,
-          },
-        ])
-      );
+      .then((vehicule) => setItems([...items, vehicule]));
   };
 
   const updateItem = (item, itemName) => {
@@ -54,11 +39,7 @@ const TodoProvider = function ({ children }) {
       .then((vehicule) =>
         setItems(
           items.map((_item) => {
-            if (_item.id === vehicule.id)
-              return {
-                id: vehicule.id,
-                name: `${vehicule.marque} - ${vehicule.model}`,
-              };
+            if (_item.id === vehicule.id) return vehicule;
             return _item;
           })
         )

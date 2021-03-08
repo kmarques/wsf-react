@@ -1,42 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Button";
+import Button from "../components/Button";
 import logo from "../logo.svg";
 
 export default function HomeView() {
   const buttons = [
-    { title: "bonjour", color: "red", img: logo },
-    { title: "bonsoir", color: "red", onClick: () => alert("bonsoir") },
-    { title: "bonsocdsqfqsir", color: "red" },
-    { title: "light", color: "red", onClick: () => setTheme("light") },
-    { title: "dark", color: "red" },
+    { title: "bonjour", variant: "contained", color: "red", img: logo },
+    {
+      title: "bonsoir",
+      variant: "contained",
+      color: "primary",
+      onClick: () => alert("bonsoir"),
+    },
+    { title: "bonsocdsqfqsir", variant: "contained", color: "secondary" },
+    { title: "light", variant: "contained", color: "primary", toto: "text" },
+    { title: "dark", variant: "contained", color: "inherit", toto: "text" },
   ];
-  const [theme, setTheme] = useState("light");
 
   return (
     <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      {theme}
-      {buttons.map((button) => (
+      {buttons.map((button, index) => (
         <Button
+          key={index}
           title={button.title}
           color={button.color}
           img={button.img}
           onClick={button.onClick}
+          variant={button.variant}
+          toto={button.toto}
         />
       ))}
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-      <Link to="/list">Go to List</Link>
+      <Button variant="text" component={Link} to="/list" title={"Go to List"} />
     </header>
   );
 }

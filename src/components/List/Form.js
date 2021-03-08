@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../../Button";
+import Button from "../Button";
 
 function Form({ onSubmit, defaultValue = "" }) {
   const [itemName, setItemName] = useState(defaultValue);
@@ -10,7 +10,12 @@ function Form({ onSubmit, defaultValue = "" }) {
         value={itemName}
         onChange={(event) => setItemName(event.target.value)}
       />
-      <Button title="Submit" onClick={() => onSubmit(itemName)} />
+      <Button
+        variant="contained"
+        color="secondary"
+        title="Submit"
+        onClick={() => onSubmit(itemName)}
+      />
     </>
   );
 }
