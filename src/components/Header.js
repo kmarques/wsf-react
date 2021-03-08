@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   imgResponsive: {
     height: 64,
   },
+  buttonPink: {
+    color: "orange",
+  },
 }));
 
 export default function Header() {
@@ -32,7 +35,12 @@ export default function Header() {
             <Typography variant="h6">Todo List Manager</Typography>
           </Button>
         </div>
-        <Button color="inherit" component={Link} to="/list">
+        <Button
+          color="inherit"
+          component={Link}
+          to="/list"
+          className={classes.buttonPink}
+        >
           Todo List
         </Button>
       </Toolbar>
