@@ -3,6 +3,7 @@ import "./App.css";
 import Button from "./Button";
 import List from "./components/List/List";
 import { useState } from "react";
+import TodoProvider from "./context/todo";
 
 // React.createElement('div', {
 //   className:"App"
@@ -18,30 +19,32 @@ function App() {
   const [theme, setTheme] = useState("light");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {theme}
-        {buttons.map((button) => (
-          <Button
-            title={button.title}
-            color={button.color}
-            img={button.img}
-            onClick={button.onClick}
-          />
-        ))}
-        <List />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoProvider>
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          {theme}
+          {buttons.map((button) => (
+            <Button
+              title={button.title}
+              color={button.color}
+              img={button.img}
+              onClick={button.onClick}
+            />
+          ))}
+          <List />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </TodoProvider>
     </div>
   );
 }

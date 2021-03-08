@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Button from "../../Button";
+import React, { useContext, useEffect, useState } from "react";
+import { TodoContext } from "../../context/todo";
+import Form from "./Form";
 import Item from "./Item";
 
 function List() {
-  const [items, setItems] = useState([{ id: Date.now(), name: "bar" }]);
-  const [itemName, setItemName] = useState("");
   const [className, setClassName] = useState("test");
-
+  const { items, addItem } = useContext(TodoContext);
   useEffect(() => {
     console.log("items changed");
 
     return () => {
       console.log("items will changed");
     };
-  }, [items, itemName]);
+  }, [items]);
 
   useEffect(() => {
     console.log("component mounted");
@@ -25,38 +24,17 @@ function List() {
     // eslint-disable-next-line
   }, []);
 
-  const addItem = () => {
-    const newItems = [
-      ...items,
-      {
-        id: Date.now(),
-        name: itemName,
-      },
-    ];
-    setItems(newItems);
-    setItemName("");
-  };
-
-  const deleteItem = (item) => {
-    const newITems = items.filter((currentItem) => item.id !== currentItem.id);
-    setItems(newITems);
-  };
-
   return (
     <>
       <ul className={className}>
-        {items.map((item) => (
-          <Item item={item} deleteItem={deleteItem} />
+        {items.map((data) => (
+          <Item item={data} />
         ))}
       </ul>
 
       {items.length !== 0 && <Item item={items[0]} />}
       {items.length === 0 && "List Vide"}
-      <input
-        value={itemName}
-        onChange={(event) => setItemName(event.target.value)}
-      />
-      <Button title="Add Item" onClick={addItem} />
+      <Form onSubmit={addItem} />
     </>
   );
 }
