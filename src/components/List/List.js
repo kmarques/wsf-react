@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Route } from "react-router";
 import { TodoContext } from "../../context/todo";
+import ItemView from "../../views/ItemView";
 import Form from "./Form";
 import Item from "./Item";
 
@@ -35,6 +37,10 @@ function List() {
       {items.length !== 0 && <Item item={items[0]} />}
       {items.length === 0 && "List Vide"}
       <Form onSubmit={addItem} />
+
+      <Route path="/list/:id">
+        <ItemView />
+      </Route>
     </>
   );
 }

@@ -73,8 +73,15 @@ const TodoProvider = function ({ children }) {
     });
   };
 
+  const getItem = (id) => {
+    console.log(id, items);
+    return items.find((item) => item.id === id);
+  };
+
   return (
-    <TodoContext.Provider value={{ items, addItem, deleteItem, updateItem }}>
+    <TodoContext.Provider
+      value={{ items, addItem, deleteItem, updateItem, getItem }}
+    >
       {children}
     </TodoContext.Provider>
   );
