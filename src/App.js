@@ -4,6 +4,10 @@ import Button from "./Button";
 import List from "./components/List/List";
 import { useState } from "react";
 import TodoProvider from "./context/todo";
+import { BrowserRouter } from "react-router-dom";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import Footer from "./components/Footer";
 
 // React.createElement('div', {
 //   className:"App"
@@ -18,7 +22,14 @@ function App() {
   ];
   const [theme, setTheme] = useState("light");
   return (
-    <div className="App">
+    <>
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <Body />
+          <Footer />
+        </BrowserRouter>
+      </div>
       <TodoProvider>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -45,7 +56,7 @@ function App() {
           </a>
         </header>
       </TodoProvider>
-    </div>
+    </>
   );
 }
 
