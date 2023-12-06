@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Button from "./components/Button-pro";
+import ProgressBar from "./components/ProgressBar2";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,8 @@ function App() {
 
   const MAX_VOITURES = 10;
   const [voituresCount, setVoituresCount] = useState(9);
+  const [current, setCurrent] = useState(0);
+  const [increment, setIncrement] = useState(5);
 
   const [alertStyle, setAlertStyle] = useState({
     backgroundColor: "red",
@@ -99,7 +102,6 @@ function App() {
           target="_blank"
           onClick={function () {
             toto = toto + 1;
-            console.log(toto);
           }}
         >
           Go to google
@@ -109,9 +111,55 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: 200, height: 50 }}>
+            <ProgressBar
+              current={current}
+              maxCount={30}
+              range={{
+                20: "green",
+                60: "yellow",
+                100: "red",
+                Infinity: "black",
+              }}
+            />
+          </div>
+          <div style={{ height: 200, width: 50 }}>
+            <ProgressBar
+              variant="vertical"
+              current={current}
+              maxCount={30}
+              range={{
+                20: "green",
+                60: "yellow",
+                100: "red",
+                Infinity: "black",
+              }}
+            />
+          </div>
+        </div>
+        <select
+          defaultValue={increment}
+          onChange={(e) => setIncrement(parseInt(e.target.value))}
+        >
+          <option value="1">+1</option>
+          <option value="5">+5</option>
+          <option value="10">+10</option>
+        </select>
+        <button onClick={() => setCurrent(current + increment)}>
+          Add Step
+        </button>
+        <button onClick={() => setCurrent(current - increment)}>
+          Remove Step
+        </button>
+        <button onClick={() => setCurrent(0)}>Reset</button>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
