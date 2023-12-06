@@ -1,11 +1,15 @@
 export default function Button(props) {
-  let title = props.title;
-  const onClick = props.onClick;
-  const customStyle = props.customStyle;
-  const variant = props.variant;
-  let Component = props.component ?? "button";
-  const children = props.children;
-  // const {title, onClick, customStyle, variant, component, children} = props;
+  const {
+    title,
+    onClick,
+    customStyle,
+    variant,
+    component = "button",
+    children,
+    ...rest
+  } = props;
+  let finalTitle = title;
+  let Component = component;
 
   const style = {
     backgroundColor: "red",
@@ -22,7 +26,7 @@ export default function Button(props) {
       style.borderRadius = "50%";
       style.width = "50px";
       style.height = "50px";
-      title = title.slice(0, 1);
+      finalTitle = finalTitle.slice(0, 1);
       break;
     case "text":
       Component = "span";
@@ -46,7 +50,7 @@ export default function Button(props) {
   //  );
   //}
   return (
-    <Component style={finalStyle} onClick={onClick}>
+    <Component style={finalStyle} onClick={onClick} {...rest}>
       {title ?? children}
     </Component>
   );

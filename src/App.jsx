@@ -2,22 +2,64 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import Button from "./components/Button";
+import Button from "./components/Button-pro";
 
 function App() {
   const [count, setCount] = useState(0);
+  /*
+    <=>
+    const countState = useState(0);
+    const count = countState[0];
+    const setCount = countState[1];
+  */
+  const [displayLogo, setDisplayLogo] = useState(true);
+
+  const MAX_VOITURES = 10;
+  const [voituresCount, setVoituresCount] = useState(9);
+
+  const [alertStyle, setAlertStyle] = useState({
+    backgroundColor: "red",
+    color: "white",
+  });
+
+  function changeAlertStyle() {
+    setTimeout(() => {
+      if (alertStyle.backgroundColor === "red") {
+        setAlertStyle({
+          backgroundColor: "yellow",
+          color: "red",
+        });
+      } else {
+        setAlertStyle({
+          backgroundColor: "red",
+          color: "white",
+        });
+      }
+    }, 1000);
+  }
+
+  changeAlertStyle();
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      {displayLogo && (
+        <div>
+          <a href="https://vitejs.dev" target="_blank">
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={reactLogo} className="logo react" alt="React logo" />
+          </a>
+        </div>
+      )}
+      {!displayLogo && <p>Logos cachés</p>}
       <h1>Vite + React</h1>
+      {voituresCount > MAX_VOITURES && (
+        <p style={alertStyle}>/!\ Trop de voitures en stocks</p>
+      )}
+      <button onClick={() => setVoituresCount(voituresCount + 1)}>
+        Add Voiture
+      </button>
       <div className="card">
         <Button title="Button 1" onClick={() => console.log("Button 1")} />
         <Button
@@ -37,8 +79,32 @@ function App() {
           variant="text"
           title="Button 4"
           onClick={() => confirm("Are you sure ?")}
-        />
+        >
+          Button 4.children
+        </Button>
         <Button title="Button 5" component="a" />
+        <Button
+          component="a"
+          href="#"
+          onClick={function () {
+            setDisplayLogo(!displayLogo);
+          }}
+        >
+          Toggle Logo
+        </Button>
+        <Button
+          component="a"
+          href="https://google.fr"
+          rel="noreferrer"
+          target="_blank"
+          onClick={function () {
+            toto = toto + 1;
+            console.log(toto);
+          }}
+        >
+          Go to google
+          <img src={viteLogo} alt="Vite logo" />
+        </Button>
 
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
