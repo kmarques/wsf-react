@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "src": "https://picsum.photos/200/300?random=1",
+    "description": "Image 1",
+    "tags": ["jeux", "stream"],
+    "user": "vladimir",
+    "views": 2
+  },
+  {
+    "id": 2,
+    "src": "https://picsum.photos/200/300?random=2",
+    "description": "Image 2",
+    "tags": ["nourriture", "healthy"],
+    "user": "raf93",
+    "views": 93
+  },
+  {
+    "id": 3,
+    "src": "https://picsum.photos/200/300?random=3",
+    "description": "Image 3",
+    "tags": ["australia", "kangourou"],
+    "user": "dd_le_dev_back",
+    "views": 3129
+  },
+  {
+    "id": 4,
+    "src": "https://picsum.photos/200/300?random=4",
+    "description": "Image 4",
+    "tags": ["surf", "australia"],
+    "user": "vanellaZerr",
+    "views": 10
+  }
+]

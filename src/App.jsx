@@ -4,6 +4,14 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import Button from "./components/Button-pro";
 import ProgressBar from "./components/ProgressBar2";
+import InstaFlux from "./Insta/InstaFLux";
+
+const images = [
+  { id: 1, src: "https://picsum.photos/200/300?random=1", name: "Image 1" },
+  { id: 2, src: "https://picsum.photos/200/300?random=2", name: "Image 2" },
+  { id: 3, src: "https://picsum.photos/200/300?random=3", name: "Image 3" },
+  { id: 4, src: "https://picsum.photos/200/300?random=4", name: "Image 4" },
+];
 
 function App() {
   const [count, setCount] = useState(0);
@@ -119,6 +127,7 @@ function App() {
             alignItems: "center",
           }}
         >
+          Current step : {current}
           <div style={{ width: 200, height: 50 }}>
             <ProgressBar
               current={current}
@@ -160,7 +169,13 @@ function App() {
           Remove Step
         </button>
         <button onClick={() => setCurrent(0)}>Reset</button>
+        <div>
+          {images.map((item) => (
+            <img key={item.id} src={item.src} alt={item.name} />
+          ))}
+        </div>
       </div>
+      <InstaFlux />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
