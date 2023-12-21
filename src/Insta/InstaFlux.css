@@ -1,0 +1,22 @@
+.insta-flux {
+  display: flex;
+  flex-direction: column;
+}
+
+.insta-flux form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+}
+
+.insta-flux form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.insta-flux form label.error {
+  color: red;
+}
