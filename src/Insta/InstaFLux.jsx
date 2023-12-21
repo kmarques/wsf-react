@@ -5,6 +5,7 @@ import Button from "../components/Button-pro";
 import "./InstaFlux.css";
 import Modal from "../components/Modal";
 import PostForm from "./PostForm";
+import Header from "../layouts/Header";
 
 export default function InstaFlux() {
   const [posts, setPosts] = useState(data);
@@ -22,6 +23,7 @@ export default function InstaFlux() {
 
   async function addPost(newPost) {
     // Sauvegarde serveur exemple : await fetch
+    newPost.id = Date.now();
     setPosts([newPost, ...posts]);
     setOpenModal(false);
   }
@@ -43,7 +45,7 @@ export default function InstaFlux() {
       )}
       <div className="insta-flux-container">
         {filteredData.map((item) => (
-          <InstaCard item={item} />
+          <InstaCard key={item.id} item={item} />
         ))}
       </div>
     </div>
